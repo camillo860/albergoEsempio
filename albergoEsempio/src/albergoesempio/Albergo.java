@@ -7,6 +7,7 @@ package albergoesempio;
 
 
 import exception.ChiaveException;
+import java.io.IOException;
 import java.time.LocalDate;
  
 public class Albergo {
@@ -29,13 +30,24 @@ public class Albergo {
              if (pc.cercaChiave("Mario","Rossi", 101)!=null){
                 System.out.println("Utente trovato! - Consegnare chiave");
             }
-            if (pc.cercaChiave("Mario","Rossi", 100)!=null){
+           /* if (pc.cercaChiave("Mario","Rossi", 100)!=null){
                 System.out.println("Utente trovato! - Consegnare chiave");
-            }
+            }*/
              
            } catch (ChiaveException ex) {
            System.out.println(ex.getMsx());
         }
+        Portachiavi pc2=new Portachiavi();
+        try {
+            pc.salvaPortachiavi();
+            pc2.caricaPortachiavi();
+            System.out.println(pc2.toString());
+
+        } catch (IOException ex) {
+            System.out.println (ex.toString()   );
+        }
+        
+            
       
         
         

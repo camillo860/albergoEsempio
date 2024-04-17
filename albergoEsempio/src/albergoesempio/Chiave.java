@@ -1,7 +1,7 @@
 
 package albergoesempio;
     
-public class Chiave {
+public class Chiave implements java.io.Serializable {
     private Cliente nominativo;
     private int IdChiave;
 

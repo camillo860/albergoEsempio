@@ -2,6 +2,11 @@
 package albergoesempio;
 
 import exception.ChiaveException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream; 
 
 
 public class Portachiavi {
@@ -73,4 +78,21 @@ public class Portachiavi {
         }
         return value;
     }
+    public void salvaPortachiavi() throws IOException{
+        System.out.println("Salvataggio dati sul disco");
+        ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream("volumi.bin"));
+        stream.writeObject(contenitore);
+        stream.close();
+    }
+    public void caricaPortachiavi() throws IOException{
+        System.out.println("Caricamento dati da file");
+         ObjectInputStream stream = new ObjectInputStream(new FileInputStream("volumi.bin"));
+        try {
+            contenitore=  (Chiave[])stream.readObject();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Classe non trovata");
+        }
+        stream.close();
+    }
+    
 }
